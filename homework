@@ -1,0 +1,52 @@
+Sub StockAnalysisHomework():
+
+    Dim ticker As String
+    Dim mydate As String
+    Dim openprice As Double
+    Dim highprice As Double
+    Dim lowprice As Double
+    Dim closeprice As Double
+    Dim volume As Double
+    Dim yearlychange As Double
+    Dim percentchange As Double
+    
+    'Set headers
+        Cells(1, 10).Value = TickerName
+        Cells(1, 11).Value = YearChange
+        Cells(1, 12).Value = PercentChanged
+        Cells(1, 13).Value = TotalStockVolume
+        
+    'setup integers for loop
+    j = 2
+    volume = 0
+    openprice = Cells(2, 3).Value
+    
+    'Create a script that will loop through all the stocks
+    
+        For i = 2 To FinalRow
+        
+        If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+            ticker = Cells(i, 1).Value
+            Cells(i, 3).Value = openprice
+            Cells(i, 6).Value = closeprice
+            yearlychange = closeprice - openprice
+            percentchange = (closeprice - openprice) / openprice
+            
+            'if openprice = 0
+            
+            openprice = Cells(i + 1, 3).Value
+            
+    'Find total Stock value
+        Cells(1, 13).Value = TotalStockVolume
+            TotalStockVolume = 0
+            j = j + 1
+            
+            Else
+                TotalStockVolume = TotalStockVolume + Cells(i, 7).Value
+        
+        End If
+        
+    Next i
+        
+
+End Sub
